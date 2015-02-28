@@ -13,7 +13,7 @@ Documenting the API would hopefully allow developers to build better third-party
 **Base URL**: `http://drone.sumc.bg/api`
 
 ### POST **/v1/timing**
-Returns a list of lines and their arrival times for a given stop. 
+Returns a list of lines and their arrival times for a given stop. For metro stations, use the `/v1/metro/times` endpoint documented below.
 
 Required parameter:
 
@@ -104,7 +104,6 @@ Example response:
     ]
 }
 ```
-
 **Note**: The example response above has been truncated. Actual response is much longer.
 
 
@@ -134,7 +133,25 @@ Example response:
     }
 ]
 ```
+**Note**: The example response above has been truncated.
 
+
+### GET **/v1/metro/times/:stationID**
+Returns times of arrival of trains in a metro station. Requires metro station ID (use the `/v1/metro/all` endpoint to obtain it).
+
+Example request:
+
+`GET http://drone.sumc.bg/api/v1/metro/times/19`
+
+Example response:
+```json
+{
+    "route_1": "10:02,10:07,10:09,10:15",
+    "route_2": "09:55,09:59,10:01,10:05",
+    "route_1_name": "Джеймс Баучер - Цариградско шосе",
+    "route_2_name": "Цариградско шосе - Джеймс Баучер"
+}
+```
 **Note**: The example response above has been truncated.
 
 
